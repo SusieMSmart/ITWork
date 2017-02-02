@@ -6,7 +6,11 @@ from rango.models import Page
 
 def index(request):
 	category_list = Category.objects.order_by('-likes')[:5]
-	context_dict = {'categories': category_list}
+	Page_list = Page.objects.order_by('-views')[:5]
+	
+	context_dict = {'categories': category_list, 'page': Page_list, 'boldmessage':'Most Liked Categories'}
+	
+	
 	return render(request, 'rango/index.html', context=context_dict)
 	
 def about(request):
