@@ -18,3 +18,9 @@ class PageForm(forms.ModelForm):
 	url = forms.URLField(max_length=200, help_text="Please enter the URL of the page.")
 	views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 	
+	class Meta:
+	# provide an association between the ModelForm and a model
+		model = Page
+		exclude = ('category',)
+	# or we could have specified those to include e.g (fields=('title', 'url', 'views')
+	
