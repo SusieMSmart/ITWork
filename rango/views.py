@@ -136,6 +136,7 @@ def register(request):
 					'registered': registered})
 					
 def user_login(request):
+	context_dict={}
 	# If the request is a HTTP POST, try to pull out the relevant information.
 	if request.method == 'POST':
 		# Gather the username and password provided by the user.
@@ -166,6 +167,7 @@ def user_login(request):
 		else:
 			# Bad login details were provided. So we can't log the user in.
 			print("Invalid login details: {0}, {1}".format(username, password))
+			context_dict['invalid']=True
 			return HttpResponse("Invalid login details supplied.")
 	# The request is not a HTTP POST, so display the login form.
 	# This scenario would most likely be a HTTP GET.
@@ -176,11 +178,14 @@ def user_login(request):
 		
 @login_required
 def restricted(request):
-	return HttpResponse("Since you're logged in, you can see this text!")
+
+	context_dict = {'boldmessage':'Since you are logged in, you can see this text!'}
+	return render(request, 'rango/restricted.html', context=context_dict)
+
 
 @login_required
 def user_logout(request):
-	Since we know the user is logged in, we can now just log them out.
+	#Since we know the user is logged in, we can now just log them out.
 	logout(request)
 	# Take the user back to the homepage.
 	return HttpResponseRedirect(reverse('index'))
