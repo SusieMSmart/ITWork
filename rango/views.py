@@ -20,7 +20,7 @@ def index(request):
 	category_list = Category.objects.order_by('-likes')[:5]
 	Page_list = Page.objects.order_by('-views')[:5]
 	
-	context_dict = {'categories': category_list, 'page': Page_list, 'boldmessage':'Most Liked Categories'}
+	context_dict = {'categories': category_list, 'pages': Page_list, 'boldmessage':'Most Liked Categories'}
 	
 	# Obtain our Response object early so we can add cookie information.
 	# Call function to handle the cookies
@@ -63,7 +63,7 @@ def visitor_cookie_handler(request):
 	
 def about(request):
 	request.session.set_test_cookie()
-	context_dict = {'boldmessage':'This tutorial was put together by Susie Smart'}
+	context_dict = {'boldmessage':'Rango says here is the about page'}
 	visitor_cookie_handler(request)
 	context_dict['visits'] = request.session['visits']
 	# Return response b

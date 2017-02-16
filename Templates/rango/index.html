@@ -37,9 +37,9 @@
 			</div>
 			<strong>{{ boldmessage }}</strong><br />
 			</div>
-			{% if page %}
+			{% if pages %}
 			<ul>
-				{% for page in page %}
+				{% for page in pages %}
 					<li>
 					<a href="{{page.url}}">{{ page.title }}</a>
 					</li>

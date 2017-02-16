@@ -33,8 +33,8 @@ class Page(models.Model):
 	title = models.CharField(max_length=pmax)
 	url = models.URLField(max_length=umax)
 	views = models.IntegerField(default=0)
-	last_visit =  models.DateTimeField()
-	first_visit = models.DateTimeField()
+	#last_visit =  models.DateTimeField()
+	#first_visit = models.DateTimeField()
 	
 	def __unicode__(self):
 		return self.title
